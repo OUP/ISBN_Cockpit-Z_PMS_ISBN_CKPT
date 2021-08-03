@@ -1,0 +1,137 @@
+<mvc:View
+	controllerName="oup.pms.zpmsisbnckpt.controller.Worklist"
+	xmlns="sap.m"
+    xmlns:f="sap.f"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+    xmlns:table="sap.ui.table"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:smartField="sap.ui.comp.smartfield"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+    <f:DynamicPage >
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+				    <Title text="{i18n>appTitle}" />
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title> 
+
+		<!-- DynamicPage Header -->
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+	           <smartFilterBar:SmartFilterBar 
+                    id="list-search-id"
+                    entitySet="ZPMS_C_ISBN_COCKPIT" 
+                    persistencyKey="SmartFilter_Explored">
+                </smartFilterBar:SmartFilterBar>
+            </f:DynamicPageHeader>
+		</f:header>
+
+        <!-- DynamicPage Content -->
+		<f:content>
+            <smartTable:SmartTable 
+                id="list-table-id" 
+                entitySet="ZPMS_C_ISBN_COCKPIT" 
+                smartFilterId="list-search-id" 
+                tableType="Table" 
+                useExportToExcel="true"
+                useVariantManagement="false" 
+                useTablePersonalisation="true" 
+                header="{i18n>worklistTableTitle}" 
+                showRowCount="true"
+                enableAutoBinding="true"
+                editTogglable="false" 
+                app:useSmartToggle="true">
+                
+                <!-- over flow toolbar -->
+                <smartTable:customToolbar>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                            <Button 
+                                text="{i18n>worlistImpressionDetails}" 
+                                tooltip="{i18n>worlistImpressionDetails}" 
+                                visible="{=!${oViewModel>/edit}}"
+                                press=".onNavPress"
+                                app:target="ImpressionDetails" />
+                            <Button 
+                                text="{i18n>worklistEditBtn}" 
+                                tooltip="{i18n>worklistEditBtn}" 
+                                visible="{=!${oViewModel>/edit}}"
+                                press=".onEditPress"
+                                type="Emphasized" />
+                            <Button 
+                                text="{i18n>worklistSaveBtn}" 
+                                tooltip="{i18n>worklistSaveBtn}" 
+                                visible="{oViewModel>/edit}"
+                                press=".onSavePress"
+                                type="Emphasized" />
+                            <Button 
+                                text="{i18n>worklistCancelBtn}" 
+                                tooltip="{i18n>worklistCancelBtn}" 
+                                visible="{oViewModel>/edit}"
+                                press=".onCancelPress" />
+                        <ToolbarSeparator />
+                    </OverflowToolbar>
+                </smartTable:customToolbar>
+
+                <!-- custom columns editable -->
+                <table:Table selectionMode="Single" visibleRowCountMode="Auto">
+                    <table:columns>
+                        <table:Column width="200px" hAlign="Begin">
+                            <table:customData>
+                                <core:CustomData 
+                                    key="p13nData"
+                                    value='\{"columnKey": "usrstat_code", "columnIndex":"3"}' />
+                            </table:customData>
+                            <Text text="{/#ZPMS_C_ISBN_COCKPITType/usrstat_code/@sap:label}" />
+                            <table:template>
+                                <smartField:SmartField value="{usrstat_code}" editable="{oViewModel>/edit}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="200px" hAlign="Begin">
+                            <table:customData>
+                                <core:CustomData 
+                                    key="p13nData"
+                                    value='\{"columnKey": "vernr", "columnIndex":"4"}' />
+                            </table:customData>
+                            <Text text="{/#ZPMS_C_ISBN_COCKPITType/vernr/@sap:label}" />
+                            <table:template>
+                                <smartField:SmartField value="{vernr}" editable="{oViewModel>/edit}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="200px" hAlign="Begin">
+                            <table:customData>
+                                <core:CustomData 
+                                    key="p13nData"
+                                    value='\{"columnKey": "bulk_deal", "columnIndex":"14"}' />
+                            </table:customData>
+                            <Text text="{/#ZPMS_C_ISBN_COCKPITType/bulk_deal/@sap:label}" />
+                            <table:template>
+                                <smartField:SmartField value="{bulk_deal}" editable="{oViewModel>/edit}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="200px" hAlign="Begin">
+                            <table:customData>
+                                <core:CustomData 
+                                    key="p13nData"
+                                    value='\{"columnKey": "zz_rag_status", "columnIndex":"18"}' />
+                            </table:customData>
+                            <Text text="{/#ZPMS_C_ISBN_COCKPITType/zz_rag_status/@sap:label}" />
+                            <table:template>
+                                <ObjectStatus
+                                    text="{rag_status_txt}"
+                                    icon="{path: 'zz_rag_status', formatter: '.formatter.RAGIcon'}"
+                                    state="{path: 'zz_rag_status', formatter: '.formatter.RAGStatus'}" />
+                            </table:template>
+                        </table:Column>
+                    </table:columns>
+                </table:Table>
+            </smartTable:SmartTable>
+	    </f:content>
+	</f:DynamicPage>
+
+</mvc:View>

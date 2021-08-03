@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "2.4"
+metadata:
+  name: "z_pms_isbn_ckpt"
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: S4D110
+          url: http://s4dbasdev110:443
+          client: 110
+          auth: basic
+        credentials:
+          username: env:110_USER
+          password: env:110_PASSWORD
+        app:
+          name: Z_PMS_ISBN_CKPT
+          description: BAS - Application Deployment
+          package: ZPMS
+          transport: S4DK901538

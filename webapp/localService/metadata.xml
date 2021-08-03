@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="cds_zpms_sd_ui_isbn_cockpit_o2" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZPMS_C_ISBN_COCKPITType" sap:label="Consumption View for ISBN Cockpit impression" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Impression"/>
+                </Key>
+                <Property Name="Next_imp_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Impression" Type="Edm.String" Nullable="false" MaxLength="24"/>
+                <Property Name="post1" Type="Edm.String" MaxLength="40" sap:label="Description" sap:quickinfo="PS: Short description (1st text line)"/>
+                <Property Name="zz1_packinformation_prd" Type="Edm.String" MaxLength="3" sap:label="Pack Information"/>
+                <Property Name="usrstat" Type="Edm.String" MaxLength="30" sap:label="Status" sap:quickinfo="Object status"/>
+                <Property Name="vernr" Type="Edm.String" MaxLength="8" sap:display-format="NonNegative" sap:label="Impression Owner" sap:quickinfo="Number of the Responsible Person (Project Manager)" sap:value-list="standard"/>
+                <Property Name="astnr" Type="Edm.String" MaxLength="8" sap:display-format="NonNegative" sap:label="Content Owner" sap:quickinfo="Applicant number" sap:value-list="standard"/>
+                <Property Name="banfn" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Purchase Requisition" sap:quickinfo="Purchase Requisition Number"/>
+                <Property Name="frgzu" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Release State"/>
+                <Property Name="frgct" Type="Edm.String" MaxLength="20" sap:label="Description" sap:quickinfo="Description of release code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="pr_text" Type="Edm.String" MaxLength="1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="name_org1" Type="Edm.String" MaxLength="40" sap:label="Name 1" sap:quickinfo="Name 1 of organization"/>
+                <Property Name="menge" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="lfdat" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Delivery date" sap:quickinfo="Item delivery date"/>
+                <Property Name="po_num" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Purchasing Document" sap:quickinfo="Purchasing Document Number"/>
+                <Property Name="bulk_deal" Type="Edm.String" MaxLength="10" sap:label="Ufield 4 WBS element" sap:quickinfo="4th user-defined field 10 digits -WBS element"/>
+                <Property Name="mco_num" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Purchasing Document" sap:quickinfo="Purchasing Document Number"/>
+                <Property Name="zz_txt_kpi_comments" Type="Edm.String" MaxLength="70" sap:label="KPI Tracker Comments"/>
+                <Property Name="zz1_packinfo_txt" Type="Edm.String" MaxLength="40"/>
+                <Property Name="zz_platform" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Platform"/>
+                <Property Name="zz_rag_status" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="RAG Status"/>
+                <Property Name="rag_status_txt" Type="Edm.String" MaxLength="5"/>
+                <Property Name="prod_rdate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="User field date" sap:quickinfo="User field for date"/>
+                <Property Name="zz1_mediaproductserie_prd" Type="Edm.String" MaxLength="18" sap:label="Series" sap:quickinfo="Media product series" sap:value-list="standard"/>
+                <Property Name="media_description" Type="Edm.String" MaxLength="60" sap:label="Series" sap:quickinfo="Media Type (Desc.)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="matnr" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="ISBN" sap:quickinfo="Material Number" sap:value-list="standard"/>
+                <Property Name="Title" Type="Edm.String" MaxLength="40" sap:label="Title" sap:quickinfo="Material description"/>
+                <Property Name="rfq_num" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Purchasing Document" sap:quickinfo="Purchasing Document Number"/>
+                <Property Name="usrstat_code" Type="Edm.String" MaxLength="4" sap:label="User Status code" sap:quickinfo="Individual status of an object (short form)" sap:value-list="standard"/>
+                <Property Name="frgco" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="PReq Release Status" sap:quickinfo="Release code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:value-list="standard"/>
+            </EntityType>
+            <EntityType Name="ZPMS_I_ISBNVHType" sap:label="Value help for ISBN" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="matnr"/>
+                </Key>
+                <Property Name="matnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Material" sap:quickinfo="Material Number"/>
+                <Property Name="maktx" Type="Edm.String" MaxLength="40" sap:label="Material description"/>
+            </EntityType>
+            <EntityType Name="ZPMS_I_T16FC_VHType" sap:label="Value help for ZPMS_DIG_PRINTER" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="frgco"/>
+                </Key>
+                <Property Name="frgco" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase" sap:label="Release code"/>
+                <Property Name="frgct" Type="Edm.String" MaxLength="20" sap:label="Description" sap:quickinfo="Description of release code"/>
+            </EntityType>
+            <EntityType Name="ZPMS_I_TCJ04VHType" sap:label="Value help for ISBN" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="vernr"/>
+                </Key>
+                <Property Name="vernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:display-format="NonNegative" sap:label="No. of Person Resp." sap:quickinfo="Number of the Responsible Person (Project Manager)"/>
+                <Property Name="verna" Type="Edm.String" MaxLength="25" sap:label="Name of Person Resp." sap:quickinfo="Name of responsible person (Project manager)"/>
+            </EntityType>
+            <EntityType Name="ZPMS_I_TCJ05VHType" sap:label="Value help for ISBN" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="astnr"/>
+                </Key>
+                <Property Name="astnr" Type="Edm.String" Nullable="false" MaxLength="8" sap:display-format="NonNegative" sap:label="Applicant no." sap:quickinfo="Applicant number"/>
+                <Property Name="astna" Type="Edm.String" MaxLength="25" sap:label="Applicant"/>
+            </EntityType>
+            <EntityType Name="ZPMS_I_TJ30T_VHType" sap:label="Value help for ZPMS_DIG_PRINTER" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="usrstat_code"/>
+                </Key>
+                <Property Name="usrstat_code" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Status" sap:quickinfo="Individual status of an object (short form)"/>
+                <Property Name="decription" Type="Edm.String" MaxLength="30" sap:label="Status" sap:quickinfo="Object status"/>
+            </EntityType>
+            <EntityType Name="ZZ1_MEDIATYPE_VType" sap:label="ZZ1_MediaType" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Code"/>
+                </Key>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="2" sap:text="Code_Text" sap:label="Media Type"/>
+                <Property Name="Code_Text" Type="Edm.String" MaxLength="60" sap:label="Media Type (Desc.)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="IsDisabled" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Is Disabled" sap:quickinfo="Custom Field: Code Disabled Indicator"/>
+            </EntityType>
+            <ComplexType Name="DummyFunctionImportResult">
+                <Property Name="IsInvalid" Type="Edm.Boolean" sap:label="TRUE"/>
+            </ComplexType>
+            <EntityContainer Name="cds_zpms_sd_ui_isbn_cockpit_o2_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZPMS_C_ISBN_COCKPIT" EntityType="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType" sap:creatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZPMS_I_ISBNVH" EntityType="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_I_ISBNVHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZPMS_I_T16FC_VH" EntityType="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_I_T16FC_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZPMS_I_TCJ04VH" EntityType="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_I_TCJ04VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZPMS_I_TCJ05VH" EntityType="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_I_TCJ05VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZPMS_I_TJ30T_VH" EntityType="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_I_TJ30T_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZZ1_MEDIATYPE_V" EntityType="cds_zpms_sd_ui_isbn_cockpit_o2.ZZ1_MEDIATYPE_VType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <FunctionImport Name="ZPMS_C_ISBN_COCKPITChg_save" ReturnType="cds_zpms_sd_ui_isbn_cockpit_o2.DummyFunctionImportResult" m:HttpMethod="POST"/>
+                <FunctionImport Name="ZPMS_C_ISBN_COCKPITNext_imp" ReturnType="cds_zpms_sd_ui_isbn_cockpit_o2.DummyFunctionImportResult" m:HttpMethod="POST" sap:action-for="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType" sap:applicable-path="Next_imp_ac">
+                    <Parameter Name="Impression" Type="Edm.String" Mode="In" MaxLength="24"/>
+                </FunctionImport>
+            </EntityContainer>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/vernr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Value help for ISBN"/>
+                        <PropertyValue Property="CollectionPath" String="ZPMS_I_TCJ04VH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="vernr"/>
+                                    <PropertyValue Property="ValueListProperty" String="vernr"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="verna"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/astnr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Value help for ISBN"/>
+                        <PropertyValue Property="CollectionPath" String="ZPMS_I_TCJ05VH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="astnr"/>
+                                    <PropertyValue Property="ValueListProperty" String="astnr"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="astna"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/zz1_mediaproductserie_prd" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="ZZ1_MediaType"/>
+                        <PropertyValue Property="CollectionPath" String="ZZ1_MEDIATYPE_V"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="zz1_mediaproductserie_prd"/>
+                                    <PropertyValue Property="ValueListProperty" String="zz1_mediaproductserie_prd"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Code_Text"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="IsDisabled"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/matnr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Value help for ISBN"/>
+                        <PropertyValue Property="CollectionPath" String="ZPMS_I_ISBNVH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="matnr"/>
+                                    <PropertyValue Property="ValueListProperty" String="matnr"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="maktx"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/usrstat_code" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Value help for ZPMS_DIG_PRINTER"/>
+                        <PropertyValue Property="CollectionPath" String="ZPMS_I_TJ30T_VH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="usrstat_code"/>
+                                    <PropertyValue Property="ValueListProperty" String="usrstat_code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="decription"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/frgco" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Value help for ZPMS_DIG_PRINTER"/>
+                        <PropertyValue Property="CollectionPath" String="ZPMS_I_T16FC_VH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="frgco"/>
+                                    <PropertyValue Property="ValueListProperty" String="frgco"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="frgct"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.cds_zpms_sd_ui_isbn_cockpit_o2_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/banfn" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/bulk_deal" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/lfdat" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/mco_num" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/media_description" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/menge" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/name_org1" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/po_num" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/pr_text" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/prod_rdate" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/rag_status_txt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/usrstat" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/zz1_packinfo_txt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/zz1_packinformation_prd" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/zz_platform" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/zz_rag_status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.ZPMS_C_ISBN_COCKPITType/zz_txt_kpi_comments" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="cds_zpms_sd_ui_isbn_cockpit_o2.cds_zpms_sd_ui_isbn_cockpit_o2_Entities/ZPMS_C_ISBN_COCKPIT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>Next_imp_ac</PropertyPath>
+                                <PropertyPath>frgct</PropertyPath>
+                                <PropertyPath>pr_text</PropertyPath>
+                                <PropertyPath>frgco</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>Next_imp_ac</PropertyPath>
+                                <PropertyPath>frgct</PropertyPath>
+                                <PropertyPath>pr_text</PropertyPath>
+                                <PropertyPath>frgco</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://s4dbasdev130:443/sap/opu/odata/sap/ZPMS_SB_UI_ISBN_COCKPIT_O2/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://s4dbasdev130:443/sap/opu/odata/sap/ZPMS_SB_UI_ISBN_COCKPIT_O2/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
