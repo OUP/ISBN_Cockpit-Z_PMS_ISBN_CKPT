@@ -29,5 +29,15 @@ sap.ui.define([], function () {
 
       return sReturn;
     },
+
+    keyText: function (sKey, sValue) {
+      let sReturn = "";
+
+      if (sValue) {
+        sReturn = `${sValue} (${sKey})`;
+      }
+
+      return sReturn;
+    },
   };
 });

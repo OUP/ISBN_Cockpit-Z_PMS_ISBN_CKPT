@@ -109,11 +109,6 @@
           "pattern": "",
           "name": "worklist",
           "target": ["worklist"]
-        },
-        {
-          "pattern": "ZPMS_C_ISBN_COCKPIT/{objectId}",
-          "name": "object",
-          "target": ["object"]
         }
       ],
 
@@ -123,16 +118,6 @@
           "viewId": "worklist",
           "viewLevel": 1,
           "title": "{i18n>worklistViewTitle}"
-        },
-        "object": {
-          "viewName": "Object",
-          "viewId": "object",
-          "viewLevel": 2,
-          "title": "{i18n>objectViewTitle}"
-        },
-        "objectNotFound": {
-          "viewName": "ObjectNotFound",
-          "viewId": "objectNotFound"
         },
         "notFound": {
           "viewName": "NotFound",

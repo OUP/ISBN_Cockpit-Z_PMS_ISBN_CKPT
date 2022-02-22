@@ -1,0 +1,48 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+   xmlns:f="sap.ui.layout.form">
+
+   <Dialog
+        title="{i18n>worklistPreqTextBtn}"
+        contentWidth="50%"
+        contentHeight="380px"
+        class="sapUiSizeCompact">
+        
+        <!-- content -->
+        <VBox fitContainer="true">
+            <f:SimpleForm
+                editable="true"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="12"
+                labelSpanL="12"
+                labelSpanM="12"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="0"
+                emptySpanL="0"
+                emptySpanM="0"
+                emptySpanS="0"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="false" >
+                <f:content>
+                    <Label text="{/#ZPMSPREQTEXT/Posid/@sap:label}" />
+                    <Text text="{Posid}" />
+                    <Label text="{/#ZPMSPREQTEXT/Banfn/@sap:label}" />
+                    <Text text="{Banfn}" />
+                    <Label text="{/#ZPMSPREQTEXT/PrText/@sap:label}" />
+                    <TextArea value="{PrText}" rows="10" growingMaxLines="10" growing="true" width="100%" height="100%" />
+                </f:content>
+            </f:SimpleForm>
+        </VBox>
+
+        <!-- footer buttons -->
+        <buttons>
+            <Button text="{i18n>cancelBtn}" press=".onPreqTextDialogCancel" />
+            <Button text="{i18n>saveBtn}" press=".onPreqTextDialogSave" type="Emphasized" />
+        </buttons>
+   </Dialog>
+
+</core:FragmentDefinition>
