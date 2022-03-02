@@ -512,7 +512,7 @@ sap.ui.define(
 
         // target
         const oTarget = {
-          semanticObject: "ZMaterial",
+          semanticObject: "Material",
           action: "manage",
         };
 
