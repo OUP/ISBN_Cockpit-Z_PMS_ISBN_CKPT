@@ -4,6 +4,7 @@ sap.ui.define(
     "sap/m/MessageToast",
     "sap/m/MessageBox",
     "sap/ui/model/json/JSONModel",
+    "sap/ui/model/Filter",
     "sap/ui/core/Fragment",
     "../model/formatter",
   ],
@@ -12,6 +13,7 @@ sap.ui.define(
     MessageToast,
     MessageBox,
     JSONModel,
+    Filter,
     Fragment,
     formatter
   ) {
@@ -25,6 +27,7 @@ sap.ui.define(
     let _oPreqTextDialog = null;
     let _oScheduleTextDialog = null;
     let _oRowSelected = null;
+    let _aPlantConst = [];
 
     return BaseController.extend("oup.pms.zpmsisbnckpt.controller.Worklist", {
       formatter: formatter,
@@ -47,6 +50,9 @@ sap.ui.define(
 
         // table initialization
         this._tableInit();
+
+        // load plant constants
+        this._getPlantConst();
       },
 
       /* =========================================================== */
@@ -139,11 +145,22 @@ sap.ui.define(
               oTarget.semanticObject = "ZPSR";
               oTarget.action = "manage";
 
+              // plants
+              let aPlants = [];
+              // defualt plant selected from row
+              aPlants.push(_oRowSelected.werks);
+              // loop to fill plants from constants
+              for (var oPlant of _aPlantConst) {
+                if (oPlant.Value !== _oRowSelected.werks) {
+                  aPlants.push(oPlant.Value);
+                }
+              }
+
               // params
               oParams.Product = _oRowSelected.matnr;
-              oParams.Plant = _oRowSelected.werks;
               oParams.sorg = _oRowSelected.vkorg;
               oParams.distChanl = _oRowSelected.vtweg;
+              oParams.Plant = aPlants;
               break;
 
             default:
@@ -157,7 +174,7 @@ sap.ui.define(
 
           this._navToTarget(oTarget, oParams);
         } catch (error) {
-          MessageToast.show(error);
+          //   MessageToast.show(error);
         }
       },
 
@@ -681,7 +698,13 @@ sap.ui.define(
       _navToTarget: (oTarget, oParams) => {
         var sParams = "";
         for (const property in oParams) {
-          sParams += `${property}=${oParams[property]}&`;
+          if (Array.isArray(oParams[property])) {
+            for (const value of oParams[property]) {
+              sParams += `${property}=${value}&`;
+            }
+          } else {
+            sParams += `${property}=${oParams[property]}&`;
+          }
         }
 
         if (sParams.length > 0) {
@@ -735,6 +758,33 @@ sap.ui.define(
             error: fnError,
           });
         }),
+
+      _getPlantConst: function () {
+        return new Promise((resolve, reject) => {
+          const fnSuccess = (oDataResponse) => {
+            try {
+              // if no errors, resolve the promise
+              _aPlantConst = oDataResponse.results || [];
+              reslove();
+            } catch (error) {
+              // error in odata request
+              reject("Failed to save the changes");
+            }
+          };
+
+          const fnError = (oErrorResponse) => {
+            reject(oErrorResponse);
+          };
+
+          this.getOwnerComponent()
+            .getModel()
+            .read("/NavConstantZPSTSet", {
+              filters: [new Filter("Name", "EQ", "PLANT")],
+              success: fnSuccess,
+              error: fnError,
+            });
+        });
+      },
     });
   }
 );
