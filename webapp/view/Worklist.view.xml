@@ -201,6 +201,31 @@
                                     press=".onPurchaseRequestionPress" />
                             </table:template>
                         </table:Column>
+                        <table:Column width="300px" hAlign="Begin" filterProperty="astnr" sortProperty="astnr">
+                            <table:customData>
+                                <core:CustomData 
+                                    key="p13nData"
+                                    value='\{"columnKey": "astnr", "columnIndex":"7"}' />
+                            </table:customData>
+                            <Text text="{/#ZPMS_C_ISBN_COCKPITType/astnr/@sap:label}" />
+                            <table:template>
+                                <HBox>
+                                    <Text 
+                                        text="{parts: [{path: 'astnr'}, {path: 'astnr_Text'}], formatter: '.formatter.keyText'}" 
+                                        visible="{=!${oViewModel>/edit}}"/>
+                                    <Select
+                                        width="285px"
+                                        forceSelection="false"
+                                        selectedKey="{astnr}"
+                                        showSecondaryValues= "false"
+                                        visible="{oViewModel>/edit}"
+                                        items="{path: '/ZPMS_I_TCJ05VH', templateShareable: false}">
+                                        <!-- <core:ListItem key="{astnr}" text="{astnr}" additionalText="{description}"/> -->
+                                        <core:Item key="{astnr}" text="{description} ({astnr})" />
+                                    </Select>
+                                </HBox>
+                            </table:template>
+                        </table:Column>
                         <table:Column width="150px" hAlign="Begin" filterProperty="po_num" sortProperty="po_num">
                             <table:customData>
                                 <core:CustomData 

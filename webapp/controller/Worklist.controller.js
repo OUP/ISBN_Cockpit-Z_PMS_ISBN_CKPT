@@ -119,11 +119,15 @@ sap.ui.define(
 
               // check for banfn value
               if (!_oRowSelected.banfn) {
-                throw "No Purchase Requisition Exits for this Impression";
+                const sErrorMsg =
+                  "No Purchase Requisition Exits for this Impression";
+                MessageToast.show(sErrorMsg);
+                throw new Error(sErrorMsg);
               }
 
               // params
               oParams.PurchaseRequisition = _oRowSelected.banfn;
+              oParams.Material = _oRowSelected.matnr;
               break;
 
             case "RFQUpdate":
@@ -133,7 +137,9 @@ sap.ui.define(
 
               // check for rfq_num value
               if (!_oRowSelected.rfq_num) {
-                throw "NO RFQ Exists for this Impression";
+                const sErrorMsg = "NO RFQ Exists for this Impression";
+                MessageToast.show(sErrorMsg);
+                throw new Error(sErrorMsg);
               }
 
               // params
@@ -765,7 +771,7 @@ sap.ui.define(
             try {
               // if no errors, resolve the promise
               _aPlantConst = oDataResponse.results || [];
-              reslove();
+              resolve();
             } catch (error) {
               // error in odata request
               reject("Failed to save the changes");
