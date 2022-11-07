@@ -26,7 +26,7 @@
 	           <smartFilterBar:SmartFilterBar 
                     id="list-search-id"
                     entitySet="ZPMS_C_ISBN_COCKPIT" 
-                    persistencyKey="SmartFilter_Explored">
+                    persistencyKey="ZPMS_C_ISBN_COCKPIT_P_SF_KEY">
                 </smartFilterBar:SmartFilterBar>
             </f:DynamicPageHeader>
 		</f:header>
@@ -37,15 +37,17 @@
                 id="list-table-id" 
                 entitySet="ZPMS_C_ISBN_COCKPIT" 
                 smartFilterId="list-search-id" 
-                tableType="Table" 
+                tableType="AnalyticalTable" 
                 useExportToExcel="true"
                 beforeExport=".onBeforeExport"
-                useVariantManagement="false" 
+                useVariantManagement="true" 
                 useTablePersonalisation="true" 
+                persistencyKey="ZPMS_C_ISBN_COCKPIT_P_ST_KEY"
                 header="{i18n>worklistTableTitle}" 
                 showRowCount="true"
                 enableAutoBinding="true"
                 editTogglable="false" 
+                requestAtLeastFields="Impression,post1,zz1_packinformation_prd"
                 app:useSmartToggle="true">
                 
                 <!-- over flow toolbar -->
@@ -122,7 +124,34 @@
                 <!-- custom columns editable -->
                 <table:Table selectionMode="Single" rowActionCount="1" visibleRowCountMode="Auto">
                     <table:columns>
-                        <table:Column width="180px" hAlign="Begin" filterProperty="matnr" sortProperty="matnr">
+                        <!-- imporession -->
+                        <table:Column width="200px" autoResizable="true" hAlign="Begin" filterProperty="Impression" sortProperty="Impression">
+                            <table:customData>
+                                <core:CustomData 
+                                    key="p13nData"
+                                    value='\{"columnKey": "Impression", "columnIndex":"0"}' />
+                            </table:customData>
+                            <Text text="Impression" />
+                            <table:template>
+                                <Text text="{Impression}"/>
+                            </table:template>
+                        </table:Column>
+
+                        <!-- description -->
+                        <table:Column width="350px" autoResizable="true" hAlign="Begin" filterProperty="post1" sortProperty="post1">
+                            <table:customData>
+                                <core:CustomData 
+                                    key="p13nData"
+                                    value='\{"columnKey": "post1", "columnIndex":"1"}' />
+                            </table:customData>
+                            <Text text="{/#ZPMS_C_ISBN_COCKPITType/post1/@sap:label}" />
+                            <table:template>
+                                <Text text="{post1}"/>
+                            </table:template>
+                        </table:Column>
+                        
+                        <!-- material -->
+                        <table:Column width="175px" autoResizable="true" hAlign="Begin" filterProperty="matnr" sortProperty="matnr">
                             <table:customData>
                                 <core:CustomData 
                                     key="p13nData"
@@ -135,6 +164,8 @@
                                     press=".onMaterialPress" />
                             </table:template>
                         </table:Column>
+
+                        <!-- user status -->
                         <table:Column width="200px" hAlign="Begin" filterProperty="usrstat_code" sortProperty="usrstat_code">
                             <table:customData>
                                 <core:CustomData 
@@ -163,7 +194,9 @@
                                 </HBox>
                             </table:template>
                         </table:Column>
-                        <table:Column width="300px" hAlign="Begin" filterProperty="vernr" sortProperty="vernr">
+
+                        <!-- inspection owner -->
+                        <table:Column width="275px" hAlign="Begin" filterProperty="vernr" sortProperty="vernr">
                             <table:customData>
                                 <core:CustomData 
                                     key="p13nData"
@@ -188,6 +221,20 @@
                                 </HBox>
                             </table:template>
                         </table:Column>
+
+                        <!-- pack information ID -->
+                        <table:Column width="100px" autoResizable="true" hAlign="Begin" filterProperty="zz1_packinformation_prd" sortProperty="zz1_packinformation_prd">
+                            <table:customData>
+                                <core:CustomData 
+                                    key="p13nData"
+                                    value='\{"columnKey": "zz1_packinformation_prd", "columnIndex":"5"}' />
+                            </table:customData>
+                            <Text text="{/#ZPMS_C_ISBN_COCKPITType/zz1_packinformation_prd/@sap:label}" />
+                            <table:template>
+                                <Text text="{zz1_packinformation_prd}"/>
+                            </table:template>
+                        </table:Column>
+
                         <table:Column width="150px" hAlign="Begin" filterProperty="banfn" sortProperty="banfn">
                             <table:customData>
                                 <core:CustomData 
@@ -224,6 +271,17 @@
                                         <core:Item key="{astnr}" text="{description} ({astnr})" />
                                     </Select>
                                 </HBox>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="100px" hAlign="Begin" sortProperty="preq_text">
+                            <table:customData>
+                                <core:CustomData 
+                                    key="p13nData"
+                                    value='\{"columnKey": "preq_text", "columnIndex":"8"}' />
+                            </table:customData>
+                            <Text text="PREQ Text" />
+                            <table:template>
+                                <Text text="{preq_text}"/>
                             </table:template>
                         </table:Column>
                         <table:Column width="150px" hAlign="Begin" filterProperty="po_num" sortProperty="po_num">

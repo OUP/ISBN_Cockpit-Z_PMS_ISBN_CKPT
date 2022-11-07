@@ -675,10 +675,10 @@ sap.ui.define(
         };
 
         // add event delegate for onafter rendering
-        _oTable.addEventDelegate({
-          onAfterRendering: (_) =>
-            _oTable.attachBusyStateChanged(_onSmartTableBusyStateChanged),
-        });
+        // _oTable.addEventDelegate({
+        //   onAfterRendering: (_) =>
+        //     _oTable.attachBusyStateChanged(_onSmartTableBusyStateChanged),
+        // });
       },
 
       _validateTableRowSelection: () => {

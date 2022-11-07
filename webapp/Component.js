@@ -11,6 +11,7 @@ sap.ui.define(
     return UIComponent.extend("oup.pms.zpmsisbnckpt.Component", {
       metadata: {
         manifest: "json",
+        config: { fullWidth: true },
       },
 
       /**
