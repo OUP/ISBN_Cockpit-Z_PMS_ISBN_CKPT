@@ -137,7 +137,18 @@
                             <table:template>
                                 <HBox>
                                     <Text text="{parts: [{path: 'vernr'}, {path: 'vernr_Text'}], formatter: '.formatter.keyText'}" visible="{=!${oViewModel>/edit}}" />
-                                    <Select width="285px" forceSelection="false" selectedKey="{vernr}" showSecondaryValues="false" visible="{oViewModel>/edit}" items="{path: '/ZPMS_I_TCJ04VH', templateShareable: false}">
+                                    <Select 
+                                        width="285px" 
+                                        forceSelection="false" 
+                                        selectedKey="{vernr}" 
+                                        showSecondaryValues="false" 
+                                        visible="{oViewModel>/edit}" 
+                                        items="{
+                                            path: '/ZPMS_I_TCJ04VH',
+                                            sorter: {path: 'description', descending: false}, 
+                                            templateShareable: false
+                                        }"
+                                    >
                                         <!-- <core:ListItem key="{vernr}" text="{vernr}" additionalText="{description}"/> -->
                                         <core:Item key="{vernr}" text="{description} ({vernr})" />
                                     </Select>
@@ -173,7 +184,18 @@
                             <table:template>
                                 <HBox>
                                     <Text text="{parts: [{path: 'astnr'}, {path: 'astnr_Text'}], formatter: '.formatter.keyText'}" visible="{=!${oViewModel>/edit}}" />
-                                    <Select width="285px" forceSelection="false" selectedKey="{astnr}" showSecondaryValues="false" visible="{oViewModel>/edit}" items="{path: '/ZPMS_I_TCJ05VH', templateShareable: false}">
+                                    <Select 
+                                        width="285px" 
+                                        forceSelection="false" 
+                                        selectedKey="{astnr}" 
+                                        showSecondaryValues="false" 
+                                        visible="{oViewModel>/edit}"
+                                        items="{
+                                            path: '/ZPMS_I_TCJ05VH',
+                                            sorter: {path: 'description', descending: false}, 
+                                            templateShareable: false
+                                        }"
+                                    >
                                         <!-- <core:ListItem key="{astnr}" text="{astnr}" additionalText="{description}"/> -->
                                         <core:Item key="{astnr}" text="{description} ({astnr})" />
                                     </Select>
@@ -224,7 +246,18 @@
                             <table:template>
                                 <HBox>
                                     <Text text="{parts: [{path: 'bulk_deal'}, {path: 'bulk_deal_Text'}], formatter: '.formatter.keyText'}" visible="{=!${oViewModel>/edit}}" />
-                                    <Select width="335px" forceSelection="false" selectedKey="{bulk_deal}" showSecondaryValues="false" visible="{oViewModel>/edit}" items="{path: '/ZPMS_I_BULKDEAL_VH', templateShareable: false}">
+                                    <Select 
+                                        width="335px" 
+                                        forceSelection="false" 
+                                        selectedKey="{bulk_deal}" 
+                                        showSecondaryValues="false" 
+                                        visible="{oViewModel>/edit}"
+                                        items="{
+                                            path: '/ZPMS_I_BULKDEAL_VH',
+                                            sorter: {path: 'description', descending: false}, 
+                                            templateShareable: false
+                                        }"
+                                    >
                                         <!-- <core:ListItem key="{bulk_deal}" text="{bulk_deal}" additionalText="{description}"/> -->
                                         <core:Item key="{bulk_deal}" text="{description} ({bulk_deal})" />
                                     </Select>
