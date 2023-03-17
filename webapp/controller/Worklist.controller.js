@@ -99,7 +99,7 @@ sap.ui.define(
 
               // params
               oParams.compack = "Component";
-              oParams.posid = _oRowSelected.Impression;
+              oParams.Impression = _oRowSelected.Impression;
               break;
 
             case "ParentsPacks":
@@ -109,7 +109,7 @@ sap.ui.define(
 
               // params
               oParams.compack = "Packs";
-              oParams.posid = _oRowSelected.Impression;
+              oParams.Impression = _oRowSelected.Impression;
               break;
 
             case "RFQCreate":

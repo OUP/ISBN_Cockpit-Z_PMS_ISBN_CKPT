@@ -66,7 +66,7 @@
                 </smartTable:customToolbar>
 
                 <!-- custom columns editable -->
-                <table:Table selectionMode="Single" rowActionCount="1" visibleRowCountMode="Auto" enableColumnFreeze="true">
+                <table:Table selectionMode="Single" threshold="25" rowActionCount="1" visibleRowCountMode="Auto" enableColumnFreeze="true">
                     <table:columns>
                         <!-- imporession -->
                         <table:Column width="200px" autoResizable="true" hAlign="Begin" filterProperty="Impression" sortProperty="Impression">
@@ -137,12 +137,12 @@
                             <table:template>
                                 <HBox>
                                     <Text text="{parts: [{path: 'vernr'}, {path: 'vernr_Text'}], formatter: '.formatter.keyText'}" visible="{=!${oViewModel>/edit}}" />
-                                    <Select 
-                                        width="285px" 
-                                        forceSelection="false" 
-                                        selectedKey="{vernr}" 
-                                        showSecondaryValues="false" 
-                                        visible="{oViewModel>/edit}" 
+                                    <Select
+                                        width="285px"
+                                        forceSelection="false"
+                                        selectedKey="{vernr}"
+                                        showSecondaryValues="false"
+                                        visible="{oViewModel>/edit}"
                                         items="{
                                             path: '/ZPMS_I_TCJ04VH',
                                             sorter: {path: 'description', descending: false}, 
@@ -184,11 +184,11 @@
                             <table:template>
                                 <HBox>
                                     <Text text="{parts: [{path: 'astnr'}, {path: 'astnr_Text'}], formatter: '.formatter.keyText'}" visible="{=!${oViewModel>/edit}}" />
-                                    <Select 
-                                        width="285px" 
-                                        forceSelection="false" 
-                                        selectedKey="{astnr}" 
-                                        showSecondaryValues="false" 
+                                    <Select
+                                        width="285px"
+                                        forceSelection="false"
+                                        selectedKey="{astnr}"
+                                        showSecondaryValues="false"
                                         visible="{oViewModel>/edit}"
                                         items="{
                                             path: '/ZPMS_I_TCJ05VH',
@@ -246,11 +246,11 @@
                             <table:template>
                                 <HBox>
                                     <Text text="{parts: [{path: 'bulk_deal'}, {path: 'bulk_deal_Text'}], formatter: '.formatter.keyText'}" visible="{=!${oViewModel>/edit}}" />
-                                    <Select 
-                                        width="335px" 
-                                        forceSelection="false" 
-                                        selectedKey="{bulk_deal}" 
-                                        showSecondaryValues="false" 
+                                    <Select
+                                        width="335px"
+                                        forceSelection="false"
+                                        selectedKey="{bulk_deal}"
+                                        showSecondaryValues="false"
                                         visible="{oViewModel>/edit}"
                                         items="{
                                             path: '/ZPMS_I_BULKDEAL_VH',
