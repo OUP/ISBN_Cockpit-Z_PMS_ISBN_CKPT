@@ -1,5 +1,4 @@
-<mvc:View
-    controllerName="oup.pms.zpmsisbnckpt.controller.Worklist"
+<mvc:View controllerName="oup.pms.zpmsisbnckpt.controller.Worklist"
     xmlns="sap.m"
     xmlns:f="sap.f"
     xmlns:mvc="sap.ui.core.mvc"
@@ -8,10 +7,9 @@
     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
     xmlns:smartTable="sap.ui.comp.smarttable"
     xmlns:smartField="sap.ui.comp.smartfield"
-    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
->
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
     <f:DynamicPage>
-        <!-- DynamicPage Title -->
         <f:title>
             <f:DynamicPageTitle>
                 <f:heading>
@@ -20,32 +18,32 @@
             </f:DynamicPageTitle>
         </f:title>
 
-        <!-- DynamicPage Header -->
         <f:header>
             <f:DynamicPageHeader pinnable="true">
                 <smartFilterBar:SmartFilterBar id="list-search-id" entitySet="ZPMS_C_ISBN_COCKPIT" persistencyKey="ZPMS_C_ISBN_COCKPIT_P_SF_KEY" />
             </f:DynamicPageHeader>
         </f:header>
 
-        <!-- DynamicPage Content -->
         <f:content>
-            <smartTable:SmartTable
-                id="list-table-id"
-                entitySet="ZPMS_C_ISBN_COCKPIT"
-                smartFilterId="list-search-id"
-                tableType="AnalyticalTable"
-                useExportToExcel="true"
+
+            <smartTable:SmartTable 
+                id="list-table-id" 
+                entitySet="ZPMS_C_ISBN_COCKPIT" 
+                smartFilterId="list-search-id" 
+                tableType="Table" 
+                useExportToExcel="true" 
+                useVariantManagement="true" 
+                useTablePersonalisation="true" 
+                persistencyKey="ZPMS_C_ISBN_COCKPIT_P_ST_KEY" 
+                header="{i18n>worklistTableTitle}" 
+                showRowCount="true" 
+                enableAutoBinding="true" 
+                editTogglable="false" 
                 beforeExport=".onBeforeExport"
-                useVariantManagement="true"
-                useTablePersonalisation="true"
-                persistencyKey="ZPMS_C_ISBN_COCKPIT_P_ST_KEY"
-                header="{i18n>worklistTableTitle}"
-                showRowCount="true"
-                enableAutoBinding="true"
-                editTogglable="false"
-                requestAtLeastFields="Impression,post1,zz1_packinformation_prd"
-                app:useSmartToggle="true"
-            >
+                requestAtLeastFields="Impression,post1,matnr,usrstat_code,vernr,zz1_packinformation_prd,banfn,astnr,preq_text,po_num,mco_num,rfq_num,zz_rag_status,bulk_deal" 
+                app:useSmartToggle="true" 
+                app:useSmartField="true" 
+                class="sapUiResponsiveContentPadding">
                 <!-- over flow toolbar -->
                 <smartTable:customToolbar>
                     <OverflowToolbar>
@@ -66,12 +64,12 @@
                 </smartTable:customToolbar>
 
                 <!-- custom columns editable -->
-                <table:Table selectionMode="Single" threshold="25" rowActionCount="1" visibleRowCountMode="Auto" enableColumnFreeze="true">
+                <table:Table visibleRowCountMode="Auto" threshold="99999" selectionMode="Single" rowActionCount="1" enableColumnFreeze="true">
                     <table:columns>
-                        <!-- imporession -->
+                        <!-- impression -->
                         <table:Column width="200px" autoResizable="true" hAlign="Begin" filterProperty="Impression" sortProperty="Impression">
                             <table:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "Impression", "columnIndex":"0"}' />
+                                <core:CustomData key="p13nData" value='\{"columnKey": "Impression", "columnIndex":"0", "leadingProperty": "Impression", "sortProperty": "Impression", "filterProperty": "Impression"}' />
                             </table:customData>
                             <Text text="Impression" />
                             <table:template>
@@ -82,7 +80,7 @@
                         <!-- description -->
                         <table:Column width="350px" autoResizable="true" hAlign="Begin" filterProperty="post1" sortProperty="post1">
                             <table:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "post1", "columnIndex":"1"}' />
+                                <core:CustomData key="p13nData" value='\{"columnKey": "post1", "columnIndex":"1", "leadingProperty": "post1", "sortProperty": "post1", "filterProperty": "post1"}' />
                             </table:customData>
                             <Text text="{/#ZPMS_C_ISBN_COCKPITType/post1/@sap:label}" />
                             <table:template>
@@ -93,7 +91,7 @@
                         <!-- material -->
                         <table:Column width="175px" autoResizable="true" hAlign="Begin" filterProperty="matnr" sortProperty="matnr">
                             <table:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "matnr", "columnIndex":"2"}' />
+                                <core:CustomData key="p13nData" value='\{"columnKey": "matnr", "columnIndex":"2", "leadingProperty": "matnr", "sortProperty": "matnr", "filterProperty": "matnr"}' />
                             </table:customData>
                             <Text text="{/#ZPMS_C_ISBN_COCKPITType/matnr/@sap:label}" />
                             <table:template>
@@ -104,24 +102,17 @@
                         <!-- user status -->
                         <table:Column width="200px" hAlign="Begin" filterProperty="usrstat_code" sortProperty="usrstat_code">
                             <table:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "usrstat_code", "columnIndex":"3"}' />
+                                <core:CustomData key="p13nData" value='\{"columnKey": "usrstat_code", "columnIndex":"3", "leadingProperty": "usrstat_code", "sortProperty": "usrstat_code", "filterProperty": "usrstat_code"}' />
                             </table:customData>
                             <Text text="{/#ZPMS_C_ISBN_COCKPITType/usrstat_code/@sap:label}" />
                             <table:template>
                                 <HBox>
                                     <Text text="{parts: [{path: 'usrstat_code'}, {path: 'usrstat_code_Text'}], formatter: '.formatter.keyText'}" visible="{=!${oViewModel>/edit}}" />
-                                    <Select
-                                        width="185px"
-                                        forceSelection="false"
-                                        selectedKey="{usrstat_code}"
-                                        showSecondaryValues="true"
-                                        visible="{oViewModel>/edit}"
-                                        items="{
-                                            path: '/ZPMS_I_TJ30T_VH', 
-                                            sorter: { path: 'ind', descending: false }, 
-                                            templateShareable: false
-                                        }"
-                                    >
+                                    <Select width="185px" forceSelection="false" selectedKey="{usrstat_code}" showSecondaryValues="true" visible="{oViewModel>/edit}" items="{
+                                                path: '/ZPMS_I_TJ30T_VH', 
+                                                sorter: { path: 'ind', descending: false }, 
+                                                templateShareable: false
+                                            }">
                                         <core:ListItem key="{usrstat_code}" text="{usrstat_code}" additionalText="{description}" />
                                     </Select>
                                 </HBox>
@@ -131,24 +122,17 @@
                         <!-- inspection owner -->
                         <table:Column width="275px" hAlign="Begin" filterProperty="vernr" sortProperty="vernr">
                             <table:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "vernr", "columnIndex":"4"}' />
+                                <core:CustomData key="p13nData" value='\{"columnKey": "vernr", "columnIndex":"4", "leadingProperty": "vernr", "sortProperty": "vernr", "filterProperty": "vernr"}' />
                             </table:customData>
                             <Text text="{/#ZPMS_C_ISBN_COCKPITType/vernr/@sap:label}" />
                             <table:template>
                                 <HBox>
                                     <Text text="{parts: [{path: 'vernr'}, {path: 'vernr_Text'}], formatter: '.formatter.keyText'}" visible="{=!${oViewModel>/edit}}" />
-                                    <Select
-                                        width="285px"
-                                        forceSelection="false"
-                                        selectedKey="{vernr}"
-                                        showSecondaryValues="false"
-                                        visible="{oViewModel>/edit}"
-                                        items="{
-                                            path: '/ZPMS_I_TCJ04VH',
-                                            sorter: {path: 'description', descending: false}, 
-                                            templateShareable: false
-                                        }"
-                                    >
+                                    <Select width="285px" forceSelection="false" selectedKey="{vernr}" showSecondaryValues="false" visible="{oViewModel>/edit}" items="{
+                                                path: '/ZPMS_I_TCJ04VH',
+                                                sorter: {path: 'description', descending: false}, 
+                                                templateShareable: false
+                                            }">
                                         <!-- <core:ListItem key="{vernr}" text="{vernr}" additionalText="{description}"/> -->
                                         <core:Item key="{vernr}" text="{description} ({vernr})" />
                                     </Select>
@@ -159,7 +143,7 @@
                         <!-- pack information ID -->
                         <table:Column width="100px" autoResizable="true" hAlign="Begin" filterProperty="zz1_packinformation_prd" sortProperty="zz1_packinformation_prd">
                             <table:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "zz1_packinformation_prd", "columnIndex":"5"}' />
+                                <core:CustomData key="p13nData" value='\{"columnKey": "zz1_packinformation_prd", "columnIndex":"5", "leadingProperty": "zz1_packinformation_prd", "sortProperty": "zz1_packinformation_prd", "filterProperty": "zz1_packinformation_prd"}' />
                             </table:customData>
                             <Text text="{/#ZPMS_C_ISBN_COCKPITType/zz1_packinformation_prd/@sap:label}" />
                             <table:template>
@@ -169,104 +153,97 @@
 
                         <table:Column width="150px" hAlign="Begin" filterProperty="banfn" sortProperty="banfn">
                             <table:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "banfn", "columnIndex":"6"}' />
+                                <core:CustomData key="p13nData" value='\{"columnKey": "banfn", "columnIndex":"6", "leadingProperty": "banfn", "sortProperty": "banfn", "filterProperty": "banfn"}' />
                             </table:customData>
                             <Text text="{/#ZPMS_C_ISBN_COCKPITType/banfn/@sap:label}" />
                             <table:template>
                                 <Link text="{banfn}" press=".onPurchaseRequestionPress" />
                             </table:template>
                         </table:Column>
+                        
                         <table:Column width="300px" hAlign="Begin" filterProperty="astnr" sortProperty="astnr">
                             <table:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "astnr", "columnIndex":"7"}' />
+                                <core:CustomData key="p13nData" value='\{"columnKey": "astnr", "columnIndex":"7", "leadingProperty": "astnr", "sortProperty": "astnr", "filterProperty": "astnr"}' />
                             </table:customData>
                             <Text text="{/#ZPMS_C_ISBN_COCKPITType/astnr/@sap:label}" />
                             <table:template>
                                 <HBox>
                                     <Text text="{parts: [{path: 'astnr'}, {path: 'astnr_Text'}], formatter: '.formatter.keyText'}" visible="{=!${oViewModel>/edit}}" />
-                                    <Select
-                                        width="285px"
-                                        forceSelection="false"
-                                        selectedKey="{astnr}"
-                                        showSecondaryValues="false"
-                                        visible="{oViewModel>/edit}"
-                                        items="{
-                                            path: '/ZPMS_I_TCJ05VH',
-                                            sorter: {path: 'description', descending: false}, 
-                                            templateShareable: false
-                                        }"
-                                    >
+                                    <Select width="285px" forceSelection="false" selectedKey="{astnr}" showSecondaryValues="false" visible="{oViewModel>/edit}" items="{
+                                                path: '/ZPMS_I_TCJ05VH',
+                                                sorter: {path: 'description', descending: false}, 
+                                                templateShareable: false
+                                            }">
                                         <!-- <core:ListItem key="{astnr}" text="{astnr}" additionalText="{description}"/> -->
                                         <core:Item key="{astnr}" text="{description} ({astnr})" />
                                     </Select>
                                 </HBox>
                             </table:template>
                         </table:Column>
+                        
                         <table:Column width="100px" hAlign="Begin" sortProperty="preq_text">
                             <table:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "preq_text", "columnIndex":"8"}' />
+                                <core:CustomData key="p13nData" value='\{"columnKey": "preq_text", "columnIndex":"8", "leadingProperty": "preq_text", "sortProperty": "preq_text", "filterProperty": "preq_text"}' />
                             </table:customData>
                             <Text text="PREQ Text" />
                             <table:template>
                                 <Text text="{preq_text}" />
                             </table:template>
                         </table:Column>
+                        
                         <table:Column width="150px" hAlign="Begin" filterProperty="po_num" sortProperty="po_num">
                             <table:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "po_num", "columnIndex":"11"}' />
+                                <core:CustomData key="p13nData" value='\{"columnKey": "po_num", "columnIndex":"11", "leadingProperty": "po_num", "sortProperty": "po_num", "filterProperty": "po_num"}' />
                             </table:customData>
                             <Text text="{/#ZPMS_C_ISBN_COCKPITType/po_num/@sap:label}" />
                             <table:template>
                                 <Link text="{po_num}" press=".onPurchaseOrderPress" />
                             </table:template>
                         </table:Column>
+                        
                         <table:Column width="150px" hAlign="Begin" filterProperty="mco_num" sortProperty="mco_num">
                             <table:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "mco_num", "columnIndex":"12"}' />
+                                <core:CustomData key="p13nData" value='\{"columnKey": "mco_num", "columnIndex":"12", "leadingProperty": "mco_num", "sortProperty": "mco_num", "filterProperty": "mco_num"}' />
                             </table:customData>
                             <Text text="{/#ZPMS_C_ISBN_COCKPITType/mco_num/@sap:label}" />
                             <table:template>
                                 <Link text="{mco_num}" press=".onPurchaseContractPress" />
                             </table:template>
                         </table:Column>
+                        
                         <table:Column width="150px" hAlign="Begin" filterProperty="rfq_num" sortProperty="rfq_num">
                             <table:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "rfq_num", "columnIndex":"13"}' />
+                                <core:CustomData key="p13nData" value='\{"columnKey": "rfq_num", "columnIndex":"13", "leadingProperty": "rfq_num", "sortProperty": "rfq_num", "filterProperty": "rfq_num"}' />
                             </table:customData>
                             <Text text="{/#ZPMS_C_ISBN_COCKPITType/rfq_num/@sap:label}" />
                             <table:template>
                                 <Link text="{rfq_num}" press=".onRequestForQuotationPress" />
                             </table:template>
                         </table:Column>
+
                         <table:Column width="350px" hAlign="Begin" filterProperty="bulk_deal" sortProperty="bulk_deal">
                             <table:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "bulk_deal", "columnIndex":"14"}' />
+                                <core:CustomData key="p13nData" value='\{"columnKey": "bulk_deal", "columnIndex":"14", "leadingProperty": "bulk_deal", "sortProperty": "bulk_deal", "filterProperty": "bulk_deal"}' />
                             </table:customData>
                             <Text text="{/#ZPMS_C_ISBN_COCKPITType/bulk_deal/@sap:label}" />
                             <table:template>
                                 <HBox>
                                     <Text text="{parts: [{path: 'bulk_deal'}, {path: 'bulk_deal_Text'}], formatter: '.formatter.keyText'}" visible="{=!${oViewModel>/edit}}" />
-                                    <Select
-                                        width="335px"
-                                        forceSelection="false"
-                                        selectedKey="{bulk_deal}"
-                                        showSecondaryValues="false"
-                                        visible="{oViewModel>/edit}"
-                                        items="{
-                                            path: '/ZPMS_I_BULKDEAL_VH',
-                                            sorter: {path: 'description', descending: false}, 
-                                            templateShareable: false
-                                        }"
-                                    >
+                                    <Select width="335px" forceSelection="false" selectedKey="{bulk_deal}" showSecondaryValues="false" visible="{oViewModel>/edit}" items="{
+                                                path: '/ZPMS_I_BULKDEAL_VH',
+                                                sorter: {path: 'description', descending: false}, 
+                                                templateShareable: false
+                                            }">
                                         <!-- <core:ListItem key="{bulk_deal}" text="{bulk_deal}" additionalText="{description}"/> -->
                                         <core:Item key="{bulk_deal}" text="{description} ({bulk_deal})" />
                                     </Select>
                                 </HBox>
                             </table:template>
                         </table:Column>
+                        
                         <table:Column width="200px" hAlign="Begin" filterProperty="zz_rag_status" sortProperty="zz_rag_status">
                             <table:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "zz_rag_status", "columnIndex":"18"}' />
+                                <core:CustomData key="p13nData" value='\{"columnKey": "zz_rag_status", "columnIndex":"18", "leadingProperty": "zz_rag_status", "sortProperty": "zz_rag_status", "filterProperty": "zz_rag_status"}' />
                             </table:customData>
                             <Text text="{/#ZPMS_C_ISBN_COCKPITType/zz_rag_status/@sap:label}" />
                             <table:template>
@@ -282,7 +259,14 @@
                         </table:RowAction>
                     </table:rowActionTemplate>
                 </table:Table>
+
+                <!-- layout data used to make the table growing but the filter bar fixed -->
+                <smartTable:layoutData>
+                    <FlexItemData growFactor="1" baseSize="0%"/>
+                </smartTable:layoutData>
             </smartTable:SmartTable>
+
         </f:content>
     </f:DynamicPage>
+    
 </mvc:View>

@@ -19,7 +19,8 @@ sap.ui.define(
   ) {
     "use strict";
 
-    // smart table
+    // global variables
+    let _temp = null;
     let _oView = null;
     let _oTable = null;
     let _oThis = null;
@@ -47,6 +48,9 @@ sap.ui.define(
 
         // view model
         this.setModel(_oViewModel, "oViewModel");
+
+        // increase the size limit of odata model
+        this.getOwnerComponent().getModel().setSizeLimit(999999);
 
         // table initialization
         this._tableInit();
@@ -185,6 +189,123 @@ sap.ui.define(
       },
 
       onBeforeExport: function (oEvent) {
+        const mExcelSettings = oEvent.getParameter("exportSettings");
+        const aColumns = mExcelSettings.workbook.columns;
+        const aNewColumns = [];
+
+        for (let i = 0, iLen = aColumns.length; i < iLen; i++) {
+          let oColumn = aColumns[i];
+          const sProperty = oColumn.property;
+
+          // User status
+          if (sProperty === "usrstat_code") {
+            oColumn = {
+              columnId:
+                "container-z_pms_isbn_ckpt---worklist--list-table-id-usrstat_code",
+              displayUnit: false,
+              falseValue: undefined,
+              inputFormat: null,
+              label: "User Status",
+              precision: undefined,
+              property: ["usrstat_code", "usrstat_code_Text"],
+              scale: undefined,
+              template: "{1} ({0})",
+              textAlign: "Begin",
+              trueValue: undefined,
+              type: "string",
+              unitProperty: undefined,
+              width: 12,
+            };
+          }
+          // Impression Owner
+          else if (sProperty === "vernr") {
+            oColumn = {
+              columnId:
+                "container-z_pms_isbn_ckpt---worklist--list-table-id-vernr",
+              displayUnit: false,
+              falseValue: undefined,
+              inputFormat: null,
+              label: "Impression Owner",
+              precision: undefined,
+              property: ["vernr", "vernr_Text"],
+              scale: undefined,
+              template: "{1} ({0})",
+              textAlign: "Begin",
+              trueValue: undefined,
+              type: "string",
+              unitProperty: undefined,
+              width: 12,
+            };
+          }
+          // Content Owner
+          else if (sProperty === "astnr") {
+            oColumn = {
+              columnId:
+                "container-z_pms_isbn_ckpt---worklist--list-table-id-astnr",
+              displayUnit: false,
+              falseValue: undefined,
+              inputFormat: null,
+              label: "Content Owner",
+              precision: undefined,
+              property: ["astnr", "astnr_Text"],
+              scale: undefined,
+              template: "{1} ({0})",
+              textAlign: "Begin",
+              trueValue: undefined,
+              type: "string",
+              unitProperty: undefined,
+              width: 18,
+            };
+          }
+          // Bulk Deal
+          else if (sProperty === "bulk_deal") {
+            oColumn = {
+              columnId:
+                "container-z_pms_isbn_ckpt---worklist--list-table-id-bulk_deal",
+              displayUnit: false,
+              falseValue: undefined,
+              inputFormat: null,
+              label: "Bulk Deal",
+              precision: undefined,
+              property: ["bulk_deal", "bulk_deal_Text"],
+              scale: undefined,
+              template: "{1} ({0})",
+              textAlign: "Begin",
+              trueValue: undefined,
+              type: "string",
+              unitProperty: undefined,
+              width: 12,
+            };
+          }
+          // Rag Status
+          else if (sProperty === "zz_rag_status") {
+            oColumn = {
+              columnId:
+                "container-z_pms_isbn_ckpt---worklist--list-table-id-zz_rag_status",
+              displayUnit: false,
+              falseValue: undefined,
+              inputFormat: null,
+              label: "RAG Status",
+              precision: undefined,
+              property: ["zz_rag_status", "rag_status_txt"],
+              scale: undefined,
+              template: "{1} ({0})",
+              textAlign: "Begin",
+              trueValue: undefined,
+              type: "string",
+              unitProperty: undefined,
+              width: 12,
+            };
+          }
+
+          aNewColumns.push(oColumn);
+        }
+
+        // update columns of excel export
+        mExcelSettings.workbook.columns = aNewColumns;
+      },
+
+      onBeforeExport1: function (oEvent) {
         var mExcelSettings = oEvent.getParameter("exportSettings");
 
         // ISBN
@@ -725,6 +846,33 @@ sap.ui.define(
         );
       },
 
+      _getPlantConst: function () {
+        return new Promise((resolve, reject) => {
+          const fnSuccess = (oDataResponse) => {
+            try {
+              // if no errors, resolve the promise
+              _aPlantConst = oDataResponse.results || [];
+              resolve();
+            } catch (error) {
+              // error in odata request
+              reject("Failed to save the changes");
+            }
+          };
+
+          const fnError = (oErrorResponse) => {
+            reject(oErrorResponse);
+          };
+
+          this.getOwnerComponent()
+            .getModel()
+            .read("/NavConstantZPSTSet", {
+              filters: [new Filter("Name", "EQ", "PLANT")],
+              success: fnSuccess,
+              error: fnError,
+            });
+        });
+      },
+
       _saveChanges: () =>
         new Promise((reslove, reject) => {
           const fnSuccess = (oDataResponse) => {
@@ -763,34 +911,7 @@ sap.ui.define(
             success: fnSuccess,
             error: fnError,
           });
-        }),
-
-      _getPlantConst: function () {
-        return new Promise((resolve, reject) => {
-          const fnSuccess = (oDataResponse) => {
-            try {
-              // if no errors, resolve the promise
-              _aPlantConst = oDataResponse.results || [];
-              resolve();
-            } catch (error) {
-              // error in odata request
-              reject("Failed to save the changes");
-            }
-          };
-
-          const fnError = (oErrorResponse) => {
-            reject(oErrorResponse);
-          };
-
-          this.getOwnerComponent()
-            .getModel()
-            .read("/NavConstantZPSTSet", {
-              filters: [new Filter("Name", "EQ", "PLANT")],
-              success: fnSuccess,
-              error: fnError,
-            });
-        });
-      },
+        })
     });
   }
 );
